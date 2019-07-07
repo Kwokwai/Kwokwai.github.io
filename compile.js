@@ -27,44 +27,28 @@ const postData = allPost.map(p => {
     ? contentHandler[contentHandler.length - 1].replace('\n', '')
     : '';
 
-  const summary  = contentHandler[contentHandler.length - 1].slice(0, 200)
-  console.log(summary)
-  // 拷贝文章中的图片到 public 目录下
-  const imgPatt = /\!\[[^\]]*?\]\(([^\)]*?)\)/gi;
-  const imgMatches = content.match(imgPatt);
-  if (imgMatches) {
-    imgMatches.forEach(imgMark => {
-      if (!imgMark.includes('http')) {
-        const imgPath = imgMark.replace(imgPatt, '$1');
-        content = content.replace(
-          imgPath,
-          path.join(`/contents/${p}/`, imgPath)
-        );
+  const summary  = contentHandler[contentHandler.length - 1].slice(0, 100)
 
-        fs.ensureDirSync(path.resolve(`public/contents/${p}/`));
-        fs.copySync(
-          path.resolve(`src/posts/${p}/`, imgPath),
-          path.resolve(`public/contents/${p}/`, imgPath)
-        );
-      }
-    });
+  fs.ensureDirSync(path.resolve(`public/contents/${p}/`));
+
+  const transDate = (time) => {
+      var date = new Date();
+      date.setFullYear(time.substring(0, 4));
+      date.setMonth(time.substring(5, 7) - 1);
+      date.setDate(time.substring(8, 10));
+      date.setHours(time.substring(11, 13));
+      date.setMinutes(time.substring(14, 16));
+      date.setSeconds(time.substring(17, 19));
+      return Date.parse(date) / 1000;
   }
 
-  // 拷贝文章缩略图到 public 目录下
-  fs.ensureDirSync(path.resolve(`public/contents/${p}/`));
-  fs.copySync(
-    path.resolve(`src/posts/${p}/`, 'thumb.jpg'),
-    path.resolve(`public/contents/${p}/`, 'thumb.jpg')
-  );
-
-  const creat_date = Number(new Date())
+  let creat_date = transDate(time)
 
   return {
     title,
     tag,
     time,
     url: `/post/${creat_date}`,
-    thumb: `/contents/${p}/thumb.jpg`,
     content,
     summary
   };
@@ -106,3 +90,4 @@ fs.writeFileSync(
 );
 
 console.log('文章打包完毕...');
+

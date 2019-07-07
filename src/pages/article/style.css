@@ -1,4 +1,5 @@
-.markdown-body h1,h2,h3,h4,h5,h6 {
+.markdown-body h1,h2,h3,h4,h5,h6,p {
+  color: #000000;
   text-align: left;
 }
 .article{
