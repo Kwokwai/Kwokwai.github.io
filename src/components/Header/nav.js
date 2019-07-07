@@ -17,12 +17,12 @@ class Nav extends Component{
     render() {
         const { navList, mode } = this.props
         return (
-            <Menu mode={mode} selectedKeys={[this.props.location.pathname]} className="header-nav">
+            <Menu mode={mode} selectedKeys={[this.props.location.pathname]} className="headerNav">
                 {navList.map(nav => (
                     <Menu.Item key={nav.link}>
                         <Link to={nav.link}>
                             {nav.icon && <Icon type={nav.icon}/>}
-                            <span className="nav-texy">{nav.title}</span>
+                            <span>{nav.title}</span>
                         </Link>
                     </Menu.Item>
                 ))}

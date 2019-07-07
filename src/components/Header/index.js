@@ -35,7 +35,7 @@ const Home = () => {
     const responsiveRight = { xxl: 20, xl: 19, lg: 19, sm: 20, xs: 0 }
 
     return (
-        <Header className="header-contaienr">
+        <Header className="headerContaienr" style={{background: '#fff'}}>
             <Row>
                 <Col {...responsiveLeft}>
                     <NavLeft navList={navList}/>

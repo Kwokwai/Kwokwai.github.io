@@ -1,52 +1,39 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-const Loading = () => <div className="page-loading">Loading...</div>;
+import Home from 'pages/home'
+import Article from 'pages/article'
+import Tag from 'pages/tags'
+import Archives from 'pages/archives'
+import Category from 'pages/categories'
+import About from 'pages/about'
 
 export const createRoutes = () => {
   const home = {
     path: '/',
-    component: Loadable({
-      loader: () => import('pages/home'),
-      loading: Loading,
-    }),
+    component: Home,
     exact: true,
   }
   const tags = {
     path: '/tag/:tagName',
-    component: Loadable({
-      loader: () => import('pages/tags'),
-      loading: Loading,
-    }),
+    component: Tag,
     exact: true,
   }
   const article = {
     path: '/post/:postName',
-    component: Loadable({
-      loader: () => import('pages/article'),
-      loading: Loading,
-    }),
+    component: Article,
     exact: true,
   }
   const archives = {
     path: '/archives',
-    component: Loadable({
-        loader: () => import('pages/archives'),
-        loading: Loading
-    })
+    component: Archives
   }
   const categories = {
     path: '/categories',
-    component: Loadable({
-        loader: () => import('pages/categories'),
-        loading: Loading
-    })
+    component: Category
   }
   const about = {
     path: '/about',
-    component: Loadable({
-        loader: () => import('pages/about'),
-        loading: Loading
-    })
+    component: About
   }
   return [home, tags, article, archives, categories, about]
 };

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 const NavLeft = ({ navList }) => {
-    const aa = (
+    const navItem = (
         <Menu className="header-nav">
             {navList.map(nav => (
                 <Menu.Item key={nav.link}>
@@ -18,10 +18,10 @@ const NavLeft = ({ navList }) => {
     )
 
     return (
-        <div className="header-left">
+        <div className="headerLeft">
             <i className="iconfont icon-airplane" style={{ color: '#055796' }} />
-            <Link to='/'><span className="blog-name">Kwok</span></Link>
-            <Dropdown overlayClassName="header-dropdown" trigger={['click']} overlay={aa}>
+            <Link to='/'><span className="blogName">Kwok</span></Link>
+            <Dropdown overlayClassName="headerDropdown" trigger={['click']} overlay={navItem} >
                 <Icon type="menu-o" className="nav-phone-icon" />
             </Dropdown>
         </div>
