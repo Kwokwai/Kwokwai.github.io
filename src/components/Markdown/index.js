@@ -7,29 +7,29 @@ import ImageRenderer from './components/ImageRenderer';
 import 'prismjs/themes/prism.css';
 
 export class Markdown extends Component {
-  static propTypes = {
-    source: PropTypes.string.isRequired,
-  };
+    static propTypes = {
+        source: PropTypes.string.isRequired,
+    };
 
-  componentDidMount() {
-    highlightAll();
-  }
+    componentDidMount() {
+        highlightAll();
+    }
 
-  componentDidUpdate(prevProps) {
-    highlightAll();
-  }
+    componentDidUpdate(prevProps) {
+        highlightAll();
+    }
 
-  render() {
-    return (
-      <ReactMarkdown
-        source={this.props.source}
-        renderers={{
-          CodeBlock,
-          image: ImageRenderer,
-        }}
-      />
-    );
-  }
+    render() {
+        return (
+            <ReactMarkdown
+                source={this.props.source}
+                renderers={{
+                    CodeBlock,
+                    image: ImageRenderer,
+                }}
+            />
+        );
+    }
 }
 
 export default Markdown;

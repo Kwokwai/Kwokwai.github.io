@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './style.css'
 
 import { Layout, Row, Col } from 'antd'
@@ -22,6 +22,11 @@ const navList = [
       icon: 'folder',
       title: '分类',
       link: '/categories'
+    },
+    {
+        icon: 'edit',
+        title: 'minMap',
+        link: '/mindMap'
     },
     {
       icon: 'user',

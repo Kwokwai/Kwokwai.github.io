@@ -1,10 +1,9 @@
-import React from 'react';
-import Loadable from 'react-loadable';
 import Home from 'pages/home'
 import Article from 'pages/article'
 import Tag from 'pages/tags'
 import Archives from 'pages/archives'
 import Category from 'pages/categories'
+import MindMap from 'pages/mind'
 import About from 'pages/about'
 
 export const createRoutes = () => {
@@ -31,9 +30,13 @@ export const createRoutes = () => {
     path: '/categories',
     component: Category
   }
+  const mindMap = {
+      path: '/mindMap',
+      component: MindMap
+  }
   const about = {
     path: '/about',
     component: About
   }
-  return [home, tags, article, archives, categories, about]
+  return [home, tags, article, archives, categories, mindMap, about]
 };

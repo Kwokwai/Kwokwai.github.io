@@ -9,7 +9,6 @@ import './style.css';
 export class PostList extends Component {
   static propTypes = {
     data: PropTypes.array,
-    goHome: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -35,9 +34,6 @@ export class PostList extends Component {
   render() {
     let postItems = this.props.data.map((p, i) =>
       <article className="post-item" key={`post-${p.time}-${p.title}`}>
-        {/*<Link className="thumb" to={p.url}>*/}
-          {/*<img src={this._loadThumb(p.thumb, i)} alt="" />*/}
-        {/*</Link>*/}
         <div className="tag-bar">
           {p.tag.map(t =>
             <Link to={`/tag/${t}`} key={`post_tag_${randomId()}`}>
@@ -48,13 +44,13 @@ export class PostList extends Component {
           )}
         </div>
         <Link to={p.url}>
-          <h3 className="post-title" title={p.title}>
+          <h1 className="post-title" title={p.title}>
             {p.title}
-          </h3>
+          </h1>
         </Link>
           { <Markdown source={p.summary} /> }
           <Link to={p.url}>
-              <h3 className="post-title" >
+              <h3 className="to-Detail" >
                   查看原文
               </h3>
           </Link>

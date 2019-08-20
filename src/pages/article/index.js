@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Markdown from 'components/Markdown'
 import Header from 'components/Header'
+import ToTop from 'components/ToTop'
 import * as ArticleActions from './actions'
 import './style.css'
 import 'markdown-navbar/dist/navbar.css'
@@ -74,6 +75,7 @@ export class Article extends Component {
             </article>
           </div>
           <div className='layoutRight'>
+              <ToTop/>
               {/*<MarkNav*/}
               {/*className="articleMenu"*/}
               {/*source={content}*/}

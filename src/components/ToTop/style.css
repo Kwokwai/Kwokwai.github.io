@@ -1,0 +1,45 @@
+:root {
+    --scale: 0;
+}
+
+.toTop {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    display: block;
+    margin: 0 auto;
+    width: 60px;
+    height: 60px;
+    background-color: pink;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    color: #000000;
+    overflow: hidden;
+}
+.toTop:before,
+.toTop:after {
+    content: "";
+    display: block;
+    width: 300%;
+    height: 300%;
+    position: absolute;
+    top: var(--scale);
+    left: -100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 40% 45%;
+    animation: wave 5s linear infinite;
+}
+.toTop:after {
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: wave 6.5s linear infinite;
+}
+
+@keyframes wave {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

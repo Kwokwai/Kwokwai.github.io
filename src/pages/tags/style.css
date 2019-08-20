@@ -32,6 +32,10 @@
   width: 20%;
 }
 
+.tags .layout .layoutMiddle .postList .pagination {
+  margin: 0 auto 80px;
+}
+
 @media (max-width: 1000px) {
   .tags .layout .layoutLeft {
     width: 0;

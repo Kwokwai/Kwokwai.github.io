@@ -6,21 +6,20 @@ const INITIAL_STATE = fromJS({
     postCount: 0,
     tagInfo: [],
   },
-  tagName: '',
   postList: [],
   total: 0,
   loadMore: true,
 })
 
-const resetStateForTagChange = (state, tagName) =>
+const resetState = state =>
   state
-    .update('tagName', () => tagName)
     .update('postList', () => [])
     .update('total', () => 0)
     .update('loadMore', () => true)
 
 const updateState = (state, data) => {
   const curList = state.toJS().postList.concat(data.posts)
+
   return state
     .update('postList', postList => fromJS(curList.map(p => fromJS(p))))
     .update('total', total => data.total)
@@ -38,9 +37,9 @@ export default (state = INITIAL_STATE, action) => {
         .updateIn(['postInfo', 'tagInfo'], () =>
           fromJS(action.data.tagInfo.map(t => fromJS(t)))
         )
-    case at.SET_TAG_NAME:
-      return resetStateForTagChange(state, action.message)
-    case at.FETCH_TAG_POST_LIST:
+    case at.RESET_POST_LIST:
+      return resetState(state)
+    case at.FETCH_POST_LIST:
       return updateState(state, action.data)
     default:
       return state

@@ -31,7 +31,6 @@ export const fetchList = async (
 
   const reverse = isReverse ? -1 : 1;
   const allPost = sortBy(postList, p => reverse * Date.parse(p.time));
-
   return {
     total: allPost.length,
     posts: allPost.slice(perPage * (page - 1), perPage * page),
