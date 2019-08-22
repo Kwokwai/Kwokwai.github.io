@@ -66,7 +66,6 @@ export class TagPost extends Component {
             total,
         } = this.props.tagPost.toJS()
 
-        console.log(this.props.tagPost.toJS())
         const navList = [
             {
                 linkTo: '/',

@@ -11,7 +11,7 @@
 
 .article .articleContent {
   min-height: 300px;
-  padding: 2em 4em 4em 4em;
+  padding: 0 2em;
 }
 
 .articleContent .inner {

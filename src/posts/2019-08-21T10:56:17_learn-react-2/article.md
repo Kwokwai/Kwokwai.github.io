@@ -1,11 +1,10 @@
 ===
 
-标题: 从零开始的react之路(2)
+标题: 从零开始的react之路(2)--虚拟DOM&元素渲染
 标签: 前端,react
 
 ===
 
-# 虚拟DOM&元素渲染
 ## 1、虚拟DOM
 JSX会被转移成`React.createElement`的方法
 而这个方法所构成的对象，便是虚拟DOM。
