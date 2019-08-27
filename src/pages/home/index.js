@@ -64,7 +64,7 @@ export class Home extends Component {
                         <div className="layoutLeft"/>
                         <div className="layoutMiddle">
                             <div className="postList">
-                                <PostList data={postList}/>
+                                <PostList data={postList.reverse()}/>
                                 <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={10} className="pagination"/>
                             </div>
                         </div>

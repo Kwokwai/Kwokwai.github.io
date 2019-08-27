@@ -1,69 +1,66 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import PostList from 'components/PostList'
+import React, {Component, Fragment,useState} from 'react'
 import Header from 'components/Header'
-import * as HomeActions from './actions'
+import ToTop from 'components/ToTop'
+import {Link} from 'react-router-dom'
+import {Timeline, Icon} from 'antd';
+import Paging from 'components/Pagination'
 import './style.css'
+import axios from "axios";
 
-const mapStateToProps = ({ home }) => ({ home })
+export class Archives extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            postList: []
+        }
+    }
+    componentDidMount() {
+        this.getPostList()
+    }
+    getPostList = async () => {
+        const postList = await axios.get(`/data.json?t=${Date.now()}`)
+        this.setState({
+            postList: postList.data,
+        })
+        return postList.data
+    }
 
-const mapDispatchToProps = dispatch => ({
-  homeActions: bindActionCreators(HomeActions, dispatch),
-})
+    render() {
+        const list = this.state.postList.reverse()
+        return (
+            <div className='archives'>
+                <Header/>
+                <div className="layout">
+                    <div className="layoutLeft"/>
+                    <div className="layoutMiddle">
+                        <div className="timeLine">
+                            {list.map((d, i) => (
+                                <Fragment key={i}>
+                                    {i === 0 && (
+                                        <Timeline.Item>
+                                            <span className="desc">{`总共有${list.length}篇文章.`}</span>
+                                            <br />
+                                            <br />
+                                        </Timeline.Item>
+                                    )}
 
-export class Home extends Component {
-  static propTypes = {
-    home: PropTypes.object.isRequired,
-    homeActions: PropTypes.object.isRequired,
-  }
-
-  constructor(props) {
-    super(props)
-    this.perPage = 6
-  }
-
-  componentDidMount() {
-    this.props.homeActions.fetchPostInfo()
-    this.props.homeActions.resetPostList()
-    this._loadPage(1)
-  }
-
-  _loadPage(pageNum) {
-    this.props.homeActions.fetchPostList(this.perPage, pageNum)
-    this.pageNum = pageNum
-  }
-
-  render() {
-    const {
-      postInfo: { postCount, tagInfo },
-      postList,
-    } = this.props.home.toJS()
-
-    const navList = [
-      {
-        linkTo: '/',
-        tag: `全部文章（${postCount}）`,
-      },
-      ...tagInfo,
-    ]
-
-    return (
-      <div className="home">
-        <Header data={navList} activeTag={`全部文章（${postCount}）`} />
-        <div className="layout">
-            <div className="layoutLeft"/>
-            <div className="layoutMiddle">
-                <div className="postList">
-                    <PostList data={postList} />
+                                    <Timeline.Item key={i}>
+                                        <span style={{ fontSize: '13px', marginRight: '16px' }}>{d.createDate.slice(0, 10)}</span>
+                                        <Link to={d.url}>{d.title}</Link>
+                                    </Timeline.Item>
+                                </Fragment>
+                            ))}
+                        </div>
+                        <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={10} pageSize={10} className="pagination"/>
+                    </div>
+                    <div className="layoutRight">
+                        <ToTop/>
+                    </div>
                 </div>
+
             </div>
-            <div className="layoutRight"/>
-        </div>
-      </div>
-    )
-  }
+        )
+    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Archives

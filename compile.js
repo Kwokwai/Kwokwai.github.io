@@ -22,7 +22,7 @@ const postData = allPost.map(p => {
   const tag = tagHandler.length
     ? tagHandler[0].replace(/(标签(:|：)\s*|\n)/gi, '').split(/,\s?/gi)
     : '';
-  const time = p.split('_')[0].replace('T', ' ');
+  const createDate = p.split('_')[0].replace('T', ' ');
   let content = contentHandler.length
     ? contentHandler[contentHandler.length - 1].replace('\n', '')
     : '';
@@ -31,24 +31,25 @@ const postData = allPost.map(p => {
 
   fs.ensureDirSync(path.resolve(`public/contents/${p}/`));
 
-  const transDate = (time) => {
+  const transDate = (createDate) => {
       var date = new Date();
-      date.setFullYear(time.substring(0, 4));
-      date.setMonth(time.substring(5, 7) - 1);
-      date.setDate(time.substring(8, 10));
-      date.setHours(time.substring(11, 13));
-      date.setMinutes(time.substring(14, 16));
-      date.setSeconds(time.substring(17, 19));
+      date.setFullYear(createDate.substring(0, 4));
+      date.setMonth(createDate.substring(5, 7) - 1);
+      date.setDate(createDate.substring(8, 10));
+      date.setHours(createDate.substring(11, 13));
+      date.setMinutes(createDate.substring(14, 16));
+      date.setSeconds(createDate.substring(17, 19));
       return Date.parse(date) / 1000;
   }
 
-  let creat_date = transDate(time)
+  let creat_date = transDate(createDate)
 
   return {
     title,
     tag,
-    time,
-    url: `/post/${creat_date}`,
+    createDate,
+    year: createDate.slice(0,4),
+    url: `/article/${creat_date}`,
     content,
     summary
   };

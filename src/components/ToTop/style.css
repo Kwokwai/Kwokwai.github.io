@@ -16,6 +16,7 @@
     line-height: 60px;
     color: #000000;
     overflow: hidden;
+    font-size: 14px;
 }
 .toTop:before,
 .toTop:after {

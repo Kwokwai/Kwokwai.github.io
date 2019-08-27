@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from 'components/Header'
 import './style.css'
 
-export class Archives extends Component {
+export class About extends Component {
     render() {
         return (
             <div className='about'>
@@ -13,4 +13,4 @@ export class Archives extends Component {
     }
 }
 
-export default Archives
+export default About

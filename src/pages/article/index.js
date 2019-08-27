@@ -41,7 +41,7 @@ export class Article extends Component {
   render() {
     const {
       postInfo: { postCount, tagInfo },
-      postContent: { title, time, tag, content },
+      postContent: { title, createDate, tag, content },
     } = this.props.article.toJS()
 
     const navList = [
@@ -65,8 +65,8 @@ export class Article extends Component {
                   <h1>
                       {title}
                   </h1>
-                  {time
-                      ? <Markdown source={`\`${tag.join('` `')}\` - \`${time}\`\n`} />
+                  {createDate
+                      ? <Markdown source={`\`${tag.join('` `')}\` - \`${createDate}\`\n`} />
                       : <h1>标题加载中...</h1>}
                   <div className="content">
                       {content ? <Markdown source={content} /> : <h2>内容加载中...</h2>}

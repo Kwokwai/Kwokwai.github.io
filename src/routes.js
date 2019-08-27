@@ -18,7 +18,7 @@ export const createRoutes = () => {
     exact: true,
   }
   const article = {
-    path: '/post/:postName',
+    path: '/article/:postName',
     component: Article,
     exact: true,
   }
