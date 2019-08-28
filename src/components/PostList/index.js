@@ -63,7 +63,7 @@ export class PostList extends Component {
     return (
       <section id="posts" key="amache" className="animated fadeInLeftBig">
         <div className="row">
-          {postItems.length ? postItems : <h2>正在获取文章列表...</h2>}
+            {postItems}
         </div>
       </section>
     );

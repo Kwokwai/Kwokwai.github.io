@@ -6,6 +6,7 @@ import PostList from 'components/PostList'
 import Header from 'components/Header'
 import ToTop from 'components/ToTop'
 import Paging from 'components/Pagination'
+import Loading from 'components/Loading'
 import * as HomeActions from './actions'
 import './style.css'
 
@@ -16,30 +17,40 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export class Home extends Component {
-    state = {
-        list: [],
-        page: 1,
-        total: 0,
-        name: '',
-        loading: false
+    constructor(props) {
+        super(props);
+        this.perPage = 10;
+        this.state = {
+            list: [],
+            page: 1,
+            total: 0,
+            name: '',
+            loading: false
+        }
     }
+
     static propTypes = {
         home: PropTypes.object.isRequired,
         homeActions: PropTypes.object.isRequired,
     }
 
-    constructor(props) {
-        super(props)
-        this.perPage = 10
+    componentDidMount() {
+        this.setState({
+            loadng: true
+        })
         this.props.homeActions.fetchPostInfo()
         this.props.homeActions.resetPostList()
         this.getPostList(1)
+
     }
 
 
     getPostList = (pageNum) =>{
         this.props.homeActions.fetchPostList(this.perPage, pageNum)
         this.pageNum = pageNum
+        this.setState({
+            loading: false
+        })
     }
 
     render() {
@@ -56,6 +67,7 @@ export class Home extends Component {
             ...tagInfo,
         ]
 
+        const loading = this.state.loading
         return (
             <Fragment>
                 <div className="home">
@@ -63,10 +75,12 @@ export class Home extends Component {
                     <div className="layout">
                         <div className="layoutLeft"/>
                         <div className="layoutMiddle">
-                            <div className="postList">
-                                <PostList data={postList.reverse()}/>
-                                <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={10} className="pagination"/>
-                            </div>
+                            {loading ? <Loading/> :
+                                <div className="postList">
+                                    <PostList data={postList.reverse()}/>
+                                    <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={10} className="pagination"/>
+                                </div>
+                            }
                         </div>
                         <div className="layoutRight">
                             <ToTop/>
