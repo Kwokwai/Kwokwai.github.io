@@ -21,7 +21,6 @@ export class PostList extends Component {
         url: '/',
       },
     ],
-    goHome: false,
   };
 
   _loadThumb = (thumb, i) => {

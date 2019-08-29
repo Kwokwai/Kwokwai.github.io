@@ -1,12 +1,21 @@
-import React, {Component, Fragment,useState} from 'react'
+import React, {Component, Fragment} from 'react'
 import Header from 'components/Header'
 import ToTop from 'components/ToTop'
 import {Link} from 'react-router-dom'
-import {Timeline, Icon} from 'antd';
+import {Timeline} from 'antd';
 import Paging from 'components/Pagination'
 import Loading from 'components/Loading'
 import './style.css'
-import axios from "axios";
+import {bindActionCreators} from "redux";
+import * as ArchivesActions from "../archives/actions";
+import connect from "react-redux/es/connect/connect";
+import PropTypes from "prop-types";
+
+const mapStateToProps = ({archives}) => ({archives})
+
+const mapDispatchToProps = dispatch => ({
+    archivesActions: bindActionCreators(ArchivesActions, dispatch),
+})
 
 export class Archives extends Component {
     constructor(props) {
@@ -16,23 +25,35 @@ export class Archives extends Component {
             postList: []
         }
     }
+
+    static propTypes = {
+        archives: PropTypes.object.isRequired,
+        archivesActions: PropTypes.object.isRequired,
+    }
+
     componentDidMount() {
         this.setState({
             loading: true
         })
-        this.getPostList()
+        this.props.archivesActions.fetchPostInfo()
+        this.props.archivesActions.resetPostList()
+        this.getPostList(1)
     }
-    getPostList = async () => {
-        const postList = await axios.get(`/data.json?t=${Date.now()}`)
+
+    getPostList = (pageNum) =>{
+        this.props.archivesActions.fetchPostList(this.perPage, pageNum)
+        this.pageNum = pageNum
         this.setState({
-            loading: false,
-            postList: postList.data,
+            loading: false
         })
-        return postList.data
     }
 
     render() {
-        const list = this.state.postList.reverse();
+        const {
+            postInfo: {postCount},
+            postList,
+        } = this.props.archives.toJS()
+        const list = postList.reverse();
         const loading = this.state.loading;
         return (
             <div className='archives'>
@@ -46,7 +67,7 @@ export class Archives extends Component {
                                     <Fragment key={i}>
                                         {i === 0 && (
                                             <Timeline.Item>
-                                                <span className="desc">{`总共有${list.length}篇文章.`}</span>
+                                                <span className="desc">{`总共有${postCount}篇文章.`}</span>
                                                 <br />
                                                 <br />
                                             </Timeline.Item>
@@ -73,4 +94,4 @@ export class Archives extends Component {
     }
 }
 
-export default Archives
+export default connect(mapStateToProps, mapDispatchToProps)(Archives)
