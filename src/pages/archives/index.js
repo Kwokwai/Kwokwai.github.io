@@ -1,20 +1,21 @@
 import React, {Component, Fragment} from 'react'
-import Header from 'components/Header'
-import ToTop from 'components/ToTop'
+import {bindActionCreators} from "redux";
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Timeline} from 'antd';
-import Paging from 'components/Pagination'
-import Loading from 'components/Loading'
-import './style.css'
-import {bindActionCreators} from "redux";
-import * as ArchivesActions from "../archives/actions";
-import connect from "react-redux/es/connect/connect";
 import PropTypes from "prop-types";
 
-const mapStateToProps = ({archives}) => ({archives})
+import Header from '../../components/Header'
+import ToTop from '../../components/ToTop'
+import Paging from '../../components/Pagination'
+import Loading from '../../components/Loading'
+import * as Actions from '../../actions'
+import './style.css'
+
+const mapStateToProps = ({articleList}) => ({articleList})
 
 const mapDispatchToProps = dispatch => ({
-    archivesActions: bindActionCreators(ArchivesActions, dispatch),
+    archivesActions: bindActionCreators(Actions, dispatch),
 })
 
 export class Archives extends Component {
@@ -27,7 +28,7 @@ export class Archives extends Component {
     }
 
     static propTypes = {
-        archives: PropTypes.object.isRequired,
+        articleList: PropTypes.object.isRequired,
         archivesActions: PropTypes.object.isRequired,
     }
 
@@ -52,7 +53,7 @@ export class Archives extends Component {
         const {
             postInfo: {postCount},
             postList,
-        } = this.props.archives.toJS()
+        } = this.props.articleList.toJS()
         const list = postList.reverse();
         const loading = this.state.loading;
         return (

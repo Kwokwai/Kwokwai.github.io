@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Markdown from 'components/Markdown'
-import Header from 'components/Header'
-import ToTop from 'components/ToTop'
-import * as ArticleActions from './actions'
-import './style.css'
+import Markdown from '../../components/Markdown'
+import Header from '../../components/Header'
+import ToTop from '../../components/ToTop'
+import * as Actions from '../../actions'
 import 'markdown-navbar/dist/navbar.css'
+import './style.css'
 
 const mapStateToProps = ({ article }) => ({ article })
 
 const mapDispatchToProps = dispatch => ({
-  articleActions: bindActionCreators(ArticleActions, dispatch),
+  articleActions: bindActionCreators(Actions, dispatch),
 })
 
 export class Article extends Component {

@@ -1,5 +1,5 @@
-import * as at from './actionTypes'
-import {getPostInfo, fetchList} from 'posts'
+import * as at from '../config'
+import {getPostInfo, fetchList, fetchPost} from 'posts'
 
 export const fetchPostInfo = () => async dispatch => {
     const postInfo = await getPostInfo()
@@ -18,5 +18,17 @@ export const fetchPostList = (perPage, page) => async dispatch => {
     dispatch({
         type: at.FETCH_POST_LIST,
         data: postList,
+    })
+}
+
+export const resetPostContent = () => ({
+    type: at.RESET_POST_CONTENT,
+})
+
+export const fetchPostContent = postName => async dispatch => {
+    const postContent = await fetchPost(postName)
+    dispatch({
+        type: at.FETCH_POST_CONTENT,
+        data: postContent,
     })
 }

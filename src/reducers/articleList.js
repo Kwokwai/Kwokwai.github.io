@@ -1,5 +1,5 @@
 import {fromJS} from 'immutable'
-import * as at from './actionTypes'
+import * as at from '../config'
 
 const INITIAL_STATE = fromJS({
     postInfo: {
@@ -8,14 +8,12 @@ const INITIAL_STATE = fromJS({
     },
     postList: [],
     total: 0,
-    loadMore: true,
 })
 
 const resetState = state =>
     state
         .update('postList', () => [])
         .update('total', () => 0)
-        .update('loadMore', () => true)
 
 const updateState = (state, data) => {
     // const curList = state.toJS().postList.concat(data.posts)
@@ -23,10 +21,6 @@ const updateState = (state, data) => {
     return state
         .update('postList', postList => fromJS(curList.map(p => fromJS(p))))
         .update('total', total => data.total)
-        .update(
-            'loadMore',
-            loadMore => (data.perPage * data.curPage >= data.total ? false : true)
-        )
 }
 
 export default (state = INITIAL_STATE, action) => {

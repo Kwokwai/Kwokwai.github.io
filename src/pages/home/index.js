@@ -2,18 +2,19 @@ import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import PostList from 'components/PostList'
-import Header from 'components/Header'
-import ToTop from 'components/ToTop'
-import Paging from 'components/Pagination'
-import Loading from 'components/Loading'
-import * as HomeActions from './actions'
+
+import PostList from '../../components/PostList'
+import Header from '../../components/Header'
+import ToTop from '../../components/ToTop'
+import Paging from '../../components/Pagination'
+import Loading from '../../components/Loading'
+import * as Actions from '../../actions'
 import './style.css'
 
-const mapStateToProps = ({home}) => ({home})
+const mapStateToProps = ({articleList}) => ({articleList})
 
 const mapDispatchToProps = dispatch => ({
-    homeActions: bindActionCreators(HomeActions, dispatch),
+    homeActions: bindActionCreators(Actions, dispatch),
 })
 
 export class Home extends Component {
@@ -30,7 +31,7 @@ export class Home extends Component {
     }
 
     static propTypes = {
-        home: PropTypes.object.isRequired,
+        articleList: PropTypes.object.isRequired,
         homeActions: PropTypes.object.isRequired,
     }
 
@@ -57,7 +58,7 @@ export class Home extends Component {
         const {
             postInfo: {postCount, tagInfo},
             postList,
-        } = this.props.home.toJS()
+        } = this.props.articleList.toJS()
 
         const navList = [
             {

@@ -15,9 +15,9 @@
 }
 
 .articleContent .inner {
+  position: initial;
   margin-top: 2em;
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .articleContent .content {
