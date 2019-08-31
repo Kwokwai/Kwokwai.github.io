@@ -27,7 +27,7 @@ const postData = allPost.map(p => {
     ? contentHandler[contentHandler.length - 1].replace('\n', '')
     : '';
 
-  const summary  = contentHandler[contentHandler.length - 1].slice(0, 100)
+  const summary  = contentHandler[contentHandler.length - 1].slice(0, 150)
 
   fs.ensureDirSync(path.resolve(`public/contents/${p}/`));
 

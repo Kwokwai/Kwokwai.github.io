@@ -31,8 +31,8 @@ export class Home extends Component {
     }
 
     static propTypes = {
-        articleList: PropTypes.object.isRequired,
-        homeActions: PropTypes.object.isRequired,
+        articleList: PropTypes.object,
+        homeActions: PropTypes.object,
     }
 
     componentDidMount() {
@@ -42,7 +42,6 @@ export class Home extends Component {
         this.props.homeActions.fetchPostInfo()
         this.props.homeActions.resetPostList()
         this.getPostList(1)
-
     }
 
 

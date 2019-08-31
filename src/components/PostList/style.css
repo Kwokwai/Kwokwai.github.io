@@ -34,12 +34,19 @@
   transition: all .2s linear;
 }
 
+#posts .post-item:hover {
+  background: #effbff;
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
+  transform: translate3d(0, -5px, 0);
+}
+
 #posts .post-item .tag-bar {
   margin-bottom: 0.6em;
 }
 
 #posts .post-item .tag-bar a {
   display: inline-block;
+  color: inherit;
 }
 
 #posts .post-item .tag-bar p {

@@ -21,7 +21,7 @@
 }
 
 .articleContent .content {
-  margin-top: 3.6em;
+  margin-top: 0.6em;
 }
 
 .articleContent .articleMenu {
@@ -69,4 +69,13 @@
   .articleContent .articleMenu {
     display: none;
   }
+}
+
+.articleContent .inner .date {
+  margin: 20px auto;
+}
+
+.articleContent .inner .tags a {
+  color: inherit;
+  text-decoration: none;
 }
