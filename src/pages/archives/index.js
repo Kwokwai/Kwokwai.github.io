@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
 export class Archives extends Component {
     constructor(props) {
         super(props)
+        this.perPage = 10
         this.state = {
             loading: false,
             postList: []
@@ -80,7 +81,7 @@ export class Archives extends Component {
                                         </Timeline.Item>
                                     </Fragment>
                                 ))}
-                            <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={10} pageSize={10} className="pagination"/>
+                            <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={10} className="pagination"/>
                             </div>
                         }
 

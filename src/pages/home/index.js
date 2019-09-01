@@ -78,7 +78,7 @@ export class Home extends Component {
                             {loading ? <Loading/> :
                                 <div className="postList">
                                     <PostList data={postList.reverse()}/>
-                                    <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={10} className="pagination"/>
+                                    <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={this.perPage} className="pagination"/>
                                 </div>
                             }
                         </div>

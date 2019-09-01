@@ -7,9 +7,7 @@ import './style.css';
 import {Badge, Tag} from "antd";
 import { withRouter } from 'react-router'
 import 'animate.css'
-import {WOW} from 'wowjs/dist/wow';
 
-new WOW({live: false}).init();
 
 export class PostList extends Component {
     static propTypes = {
@@ -35,7 +33,7 @@ export class PostList extends Component {
     render() {
         const colorList = ['magenta', 'blue', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'geekblue', 'purple']
         let postItems = this.props.data.map((p, i) =>
-            <article className="wow bounce post-item" key={`post-${p.time}-${p.title}`}  onClick={() => this.jumpTo(p.url)}>
+            <article className="post-item" key={`post-${p.time}-${p.title}`}  onClick={() => this.jumpTo(p.url)}>
                 <div className="tag-bar">
                     {p.tag.map((t, i) =>
                         <Badge key={`post_tag_${randomId()}`}>
