@@ -2,23 +2,23 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import PostList from 'components/PostList'
-import Header from 'components/Header'
-import ToTop from 'components/ToTop'
-import Paging from 'components/Pagination'
-import * as TagPostActions from './actions'
+import PostList from '../../components/PostList'
+import Header from '../../components/Header'
+import ToTop from '../../components/ToTop'
+import Paging from '../../components/Pagination'
+import * as Actions from '../../actions'
 import './style.css'
 
-const mapStateToProps = ({tagPost}) => ({tagPost})
+const mapStateToProps = ({tags}) => ({tags})
 
 const mapDispatchToProps = dispatch => ({
-    tagPostActions: bindActionCreators(TagPostActions, dispatch),
+    tagPostActions: bindActionCreators(Actions, dispatch),
 })
 
 export class TagPost extends Component {
     static propTypes = {
-        tagPost: PropTypes.object.isRequired,
-        tagPostActions: PropTypes.object.isRequired,
+        tagPost: PropTypes.object,
+        tagPostActions: PropTypes.object,
     }
 
     constructor(props) {
@@ -58,13 +58,11 @@ export class TagPost extends Component {
     }
 
     render() {
-        // const { tagName } = this.props.match.params
-
         const {
             postInfo: {tagInfo},
             postList,
             total,
-        } = this.props.tagPost.toJS()
+        } = this.props.tags.toJS()
 
         const navList = [
             {
@@ -83,7 +81,7 @@ export class TagPost extends Component {
                         <div className="postList">
                             <PostList data={postList}/>
                             <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={total}
-                                    pageSize={10} className="pagination"/>
+                                    pageSize={this.perPage} className="pagination"/>
                         </div>
                     </div>
                     <div className="layoutRight">

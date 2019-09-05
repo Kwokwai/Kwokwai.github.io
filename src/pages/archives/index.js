@@ -55,7 +55,7 @@ export class Archives extends Component {
             postInfo: {postCount},
             postList,
         } = this.props.articleList.toJS()
-        const list = postList.reverse();
+        const list = postList
         const loading = this.state.loading;
         return (
             <div className='archives'>
@@ -81,7 +81,7 @@ export class Archives extends Component {
                                         </Timeline.Item>
                                     </Fragment>
                                 ))}
-                            <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={10} className="pagination"/>
+                            <Paging current={parseInt(this.pageNum, 10) || 1} onChange={this.getPostList} total={postCount} pageSize={this.perPage} className="pagination"/>
                             </div>
                         }
 
