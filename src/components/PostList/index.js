@@ -33,7 +33,10 @@ export class PostList extends Component {
     render() {
         const colorList = ['magenta', 'blue', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'geekblue', 'purple']
         let postItems = this.props.data.map((p, i) =>
-            <article className="post-item" key={`post-${p.time}-${p.title}`} >
+            <article className="post-item" key={`post-${p.createDate}-${p.title}`} >
+                <p className="time">
+                    {p.createDate}
+                </p>
                 <div className="tag-bar">
                     {p.tag.map((t, i) =>
                         <Badge key={`post_tag_${randomId()}`}>
@@ -52,9 +55,6 @@ export class PostList extends Component {
                         </h1>
                     </Link>
                     {<Markdown source={p.summary}/>}
-                    <p className="time">
-                        {p.time}
-                    </p>
                 </div>
             </article>
         );

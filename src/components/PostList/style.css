@@ -89,10 +89,9 @@
 }
 
 #posts .post-item p.time {
-  font-size: 0.8em;
+  font-size: 1em;
   line-height: 1.5em;
-  color: #a2a2a2;
-  margin: 0;
+  /*color: #a2a2a2;*/
 }
 
 .to-Detail {
