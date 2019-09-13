@@ -1,5 +1,5 @@
 import * as at from '../config'
-import {getPostInfo, fetchList, fetchPost, fetchPostByTag} from 'posts'
+import {getPostInfo, fetchList, fetchPost, fetchPostByTag, getClassify} from 'posts'
 
 export const fetchPostInfo = () => async dispatch => {
     const postInfo = await getPostInfo()
@@ -43,5 +43,13 @@ export const fetchTagPostList = (tagName, perPage, page) => async dispatch => {
     dispatch({
         type: at.FETCH_TAG_POST_LIST,
         data: postList,
+    })
+}
+
+export const fetchClassify = () => async dispatch => {
+    const classifyList = await getClassify()
+    dispatch({
+        type: at.GET_CLASSIFY,
+        data: classifyList,
     })
 }

@@ -21,7 +21,7 @@ const navList = [
     {
       icon: 'folder',
       title: '分类',
-      link: '/categories'
+      link: '/classify'
     },
     {
         icon: 'edit',

@@ -19,6 +19,15 @@ export const getPostList = async () => {
     return postList.data;
 };
 
+let classifyInfo = {};
+export const getClassify = async () => {
+    if (!classifyInfo.data) {
+        classifyInfo = await axios.get(`/classify.json?t=${Date.now()}`);
+    }
+
+    return classifyInfo.data;
+}
+
 const PER_PAGE = 10;
 const INIT_PAGE = 1;
 
