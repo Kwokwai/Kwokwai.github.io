@@ -10,6 +10,11 @@ import Paging from '../../components/Pagination'
 import Loading from '../../components/Loading'
 import * as Actions from '../../actions'
 import './style.css'
+import {Layout, Menu, Breadcrumb, Icon} from 'antd';
+import './style.css';
+
+const {SubMenu} = Menu;
+const {Content, Footer, Sider} = Layout;
 
 const mapStateToProps = ({articleList}) => ({articleList})
 
@@ -45,7 +50,7 @@ export class Home extends Component {
     }
 
 
-    getPostList = (pageNum) =>{
+    getPostList = (pageNum) => {
         this.props.homeActions.fetchPostList(this.perPage, pageNum)
         this.pageNum = pageNum
         this.setState({

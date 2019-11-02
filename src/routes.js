@@ -6,6 +6,8 @@ import Category from 'pages/categories'
 import MindMap from 'pages/mind'
 import About from 'pages/about'
 import Classify from 'pages/classify'
+import ClassifyDetail from 'pages/classifyDetail'
+
 
 export const createRoutes = () => {
     const home = {
@@ -43,5 +45,9 @@ export const createRoutes = () => {
         path: '/about',
         component: About
     }
-    return [home, tags, article, archives, classify, categories, mindMap, about]
+    const classifyDetail = {
+        path: '/classifyDetail:classify',
+        component: ClassifyDetail
+    }
+    return [home, tags, article, archives, classify, categories, mindMap, about, classifyDetail]
 };

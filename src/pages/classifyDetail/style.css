@@ -1,0 +1,46 @@
+.content {
+    margin: 100px auto;
+    text-align: center;
+    color: #40a9ff;
+}
+
+.timeLine {
+    padding: 50px 50px;
+}
+
+.archives .layout {
+    display: flex;
+}
+
+.archives .layout .layoutLeft {
+    height: 100%;
+    width: 20%;
+}
+
+.archives .layout .layoutMiddle {
+    display: flex;
+    flex-flow: column;
+    width: 60%;
+}
+
+.archives .layout .layoutMiddle .pagination{
+    margin: 0 auto;
+}
+
+.archives .layout .layoutRight {
+    height: 100%;
+    width: 20%;
+}
+
+
+@media (max-width: 1000px) {
+    .archives .layout .layoutLeft {
+        width: 0;
+    }
+    .archives .layout .layoutMiddle {
+        width: 100%;
+    }
+    .archives .layout .layoutRight {
+        width: 0;
+    }
+}

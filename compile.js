@@ -61,7 +61,8 @@ const postData = allPost.map(p => {
         year: createDate.slice(0, 4),
         url: `/article/${creat_date}`,
         content,
-        summary
+        summary,
+        classifyUrl: `/classifty/${classify}`
     };
 });
 
@@ -108,6 +109,7 @@ const getClassify = () => {
             classifyList.push({
                 classify: p.classify,
                 summary: p.classifySummary,
+                classifyUrl: p.classifyUrl,
                 count: 1,
                 postList: []
             });

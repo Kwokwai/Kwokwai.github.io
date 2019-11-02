@@ -8,7 +8,7 @@ import ToTop from '../../components/ToTop'
 import Paging from '../../components/Pagination'
 import Loading from '../../components/Loading'
 import * as Actions from '../../actions'
-import './style.css'
+// import './style.css'
 import ClassifyList from './list'
 import {Badge, Tag} from "antd";
 import {Link} from "react-router-dom";
@@ -44,7 +44,7 @@ export class Classify extends Component {
     }
 
 
-    getPostList = (pageNum) =>{
+    getPostList = (pageNum) => {
         this.props.classifyActions.fetchPostList(this.perPage, pageNum)
         this.pageNum = pageNum
         this.setState({
@@ -54,7 +54,7 @@ export class Classify extends Component {
 
     render() {
         const {
-           classify: {classifyInfo}
+            classify: {classifyInfo}
         } = this.props.classify.toJS()
 
         const navList = [
@@ -65,25 +65,23 @@ export class Classify extends Component {
 
         const loading = this.state.loading
         return (
-            <Fragment>
-                <div className="home">
-                    <Header data={navList}/>
-                    <div className="layout">
-                        <div className="layoutLeft"/>
-                        <div className="layoutMiddle">
-                            {loading ? <Loading/> :
-                                <div className="classifyList">
-                                    <ClassifyList data={classifyInfo}/>
-                                </div>
-                            }
-                        </div>
-                        <div className="layoutRight">
-                            <ToTop/>
-                        </div>
+            <div className="classify">
+                <Header data={navList}/>
+                <div className="layout">
+                    <div className="layoutLeft"/>
+                    <div className="layoutMiddle">
+                        {loading ? <Loading/> :
+                            <div className="classifyList">
+                                <ClassifyList data={classifyInfo}/>
+                            </div>
+                        }
+                    </div>
+                    <div className="layoutRight">
+                        <ToTop/>
                     </div>
                 </div>
                 <div className="footer"/>
-            </Fragment>
+            </div>
         )
     }
 }
